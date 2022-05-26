@@ -1,0 +1,1 @@
+export const SET_NAVIGATE = "SET_NAVIGATE"
