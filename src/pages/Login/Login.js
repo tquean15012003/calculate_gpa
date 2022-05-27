@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
-import { loginAction } from '../../redux/actions/UserActions';
+import { isLoggedInAction, loginAction } from '../../redux/actions/UserActions';
 
 export default function Login() {
 
@@ -26,6 +27,10 @@ export default function Login() {
     }
   })
 
+  useEffect(() => {
+    dispatch(isLoggedInAction());
+  }, [])
+  
   return (
     <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col text-black" onSubmit={formik.handleSubmit}>
       <div className="mb-4">
@@ -34,7 +39,7 @@ export default function Login() {
         </label>
         <input onChange={formik.handleChange} value={formik.values.username} onBlur={formik.handleBlur} className="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" name="username" id="username" type="text" placeholder="Username" />
         {formik.touched.username && formik.errors.username ? (
-          <div>{formik.errors.username}</div>
+          <div className="text-red-900">{formik.errors.username}</div>
         ) : null}
       </div>
       <div className="mb-6">
@@ -43,7 +48,7 @@ export default function Login() {
         </label>
         <input onChange={formik.handleChange} value={formik.values.password} onBlur={formik.handleBlur} className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3" name="password" id="password" type="password" placeholder="******************" />
         {formik.touched.password && formik.errors.password ? (
-          <div>{formik.errors.password}</div>
+          <div className="text-red-900">{formik.errors.password}</div>
         ) : null}
       </div>
       <div className="flex items-center justify-between mb-6">

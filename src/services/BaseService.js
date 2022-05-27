@@ -7,7 +7,7 @@ export class baseService {
         return Axios({
             url: `${DOMAIN}/${url}`,
             method: 'GET',
-            Headers: { "token": localStorage.getItem(TOKEN) }
+            headers: { 'token': localStorage.getItem(TOKEN) }
         })
     }
 
@@ -16,7 +16,7 @@ export class baseService {
             url: `${DOMAIN}/${url}`,
             method: 'POST',
             data: model,
-            Headers: { "token": localStorage.getItem(TOKEN) }
+            headers: { "token": localStorage.getItem(TOKEN) }
         })
     }
 
@@ -25,7 +25,7 @@ export class baseService {
             url: `${DOMAIN}/${url}`,
             method: 'PUT',
             data: model,
-            Headers: { "token": localStorage.getItem(TOKEN) }
+            headers: { "token": localStorage.getItem(TOKEN) }
         })
     }
 
@@ -33,7 +33,7 @@ export class baseService {
         return Axios({
             url: `${DOMAIN}/${url}`,
             method: 'DELETE',
-            Headers: { "token": localStorage.getItem(TOKEN) }
+            headers: { "token": localStorage.getItem(TOKEN) }
         })
     }
 }
