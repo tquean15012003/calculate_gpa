@@ -30,7 +30,7 @@ export default function Login() {
   useEffect(() => {
     dispatch(isLoggedInAction());
   }, [])
-  
+
   return (
     <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col text-black" onSubmit={formik.handleSubmit}>
       <div className="mb-4">

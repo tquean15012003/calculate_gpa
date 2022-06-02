@@ -59,8 +59,8 @@ export default function HomeHeader() {
   }
 
   return (
-    <nav className="bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-between flex-wrap p-6 text-black">
-      <div className="flex items-center flex-no-shrink text-white mr-6">
+    <nav className="bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-between flex-wrap py-6 px-16 text-black">
+      <div onClick={() => { navigate("/home", { replace: false }) }} className="cursor-pointer flex items-center flex-no-shrink text-white mr-6">
         <span className="font-semibold text-2xl tracking-tight">Calculate GPA</span>
       </div>
       <div className="block lg:hidden">

@@ -14,7 +14,7 @@ import UserTemplate from './templates/UserTemplate/UserTemplate';
 
 
 function App() {
-  
+
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
