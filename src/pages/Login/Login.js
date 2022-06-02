@@ -56,13 +56,13 @@ export default function Login() {
           Sign In
         </button>
         <button className="bg-black text-white font-bold py-2 px-6 rounded" type="button">
-          <Link to="register" className="text-white inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker" href="#">
+          <Link to="/register" className="text-white inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker" href="#">
             Create account
           </Link>
         </button>
       </div>
       <div className="flex justify-center items-center text-2xl font-bold">
-        <Link to="home" href="">Continue without login</Link>
+        <Link to="/home" href="">Continue without login</Link>
       </div>
     </form>
   )

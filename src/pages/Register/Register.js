@@ -114,7 +114,7 @@ export default function Register() {
         </button>
       </div>
       <div className="flex justify-center items-center text-2xl font-bold">
-        <Link to="home" href="">Continue without register</Link>
+        <Link to="/home" href="">Continue without register</Link>
       </div>
     </form>
   )

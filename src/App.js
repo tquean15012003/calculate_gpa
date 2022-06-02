@@ -7,6 +7,7 @@ import Home from './pages/Home/Home.js';
 import Login from './pages/Login/Login';
 import NotFound from './pages/NotFound/NotFound';
 import Register from './pages/Register/Register';
+import Report from './pages/Report/Report';
 import { setNavigateAction } from './redux/actions/NavigateAction';
 import HomeTemplate from './templates/HomeTemplate/HomeTemplate.js';
 import UserTemplate from './templates/UserTemplate/UserTemplate';
@@ -28,6 +29,7 @@ function App() {
         <Route path='/login' element={<UserTemplate Component={Login} />} />
         <Route path='/register' element={<UserTemplate Component={Register} />} />
         <Route path="/home" element={<HomeTemplate Component={Home} />} />
+        <Route path="/report" element={<HomeTemplate Component={Report} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Fragment>
