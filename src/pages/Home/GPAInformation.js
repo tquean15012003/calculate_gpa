@@ -26,7 +26,7 @@ export default function GPAInformation() {
                 <p className="mb-0">To calculate <span className="font-bold">CGPA</span> at the end of the semester also enter the prior <span className="font-bold">Cumulative GPA</span> and the <span className="font-bold">Credits Earned</span> into the <span className="font-bold">Prior Cumulative GPA</span> section and then press the <span className="font-bold">Caculate GPA</span> button to display the results.</p>
             </div>
             <div className="overflow-x-auto mt-4">
-                <h2 className="font-bold text-base">Grade conversion tablle:</h2>
+                <h2 className="font-bold text-base">Grade conversion table:</h2>
                 <table className="min-w-full text-xs">
                     <colgroup>
                         <col />
