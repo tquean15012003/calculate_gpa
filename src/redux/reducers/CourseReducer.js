@@ -60,7 +60,8 @@ export const CourseReducer = (state = stateDefault, action) => {
         case ADD_COURSE: {
             let courseList = state.courseList;
             const index = courseList.findIndex(course => course.id === action.courseAdded.id);
-            if (index === -1) {
+            console.log(action.courseAdded.courseName)
+            if (index === -1 || action.courseAdded.courseName.slice(0, 3) === "BDE") {
                 courseList.push(action.courseAdded)
             } else {
                 alert("The course has been added!")

@@ -14,7 +14,7 @@ export const addCourseAction = (addCourseInfo, gradeRange) => {
     }
     return async (dispatch, getState) => {
         try {
-            const { data } = await courseService.addCourseService(courseCode);
+            const { data } = await courseService.addCourseService(courseCode.trim().toUpperCase());
             dispatch({
                 type: ADD_COURSE,
                 courseAdded: {

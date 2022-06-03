@@ -100,7 +100,7 @@ export default function ThisSemesterCGPA() {
                                         <p onClick={() => {
                                             dispatch(dropCourseAction(course.id))
                                         }} className="mb-0 cursor-pointer text-xl text-red-600 hover:text-red-400">
-                                            <i class="fa fa-times"></i>
+                                            <i className="fa fa-times"></i>
                                         </p>
                                     </td>
                                 </tr>
