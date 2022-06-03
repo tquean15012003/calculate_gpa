@@ -8,7 +8,7 @@ export default function Homefooter() {
 
   return (
     <footer className="bg-gradient-to-r from-gray-700 to-gray-900 dark:text-gray-50">
-      <div className="flex flex-col py-4 mx-auto md:py-6 px-16 lg:flex-row divide-gray-400">
+      <div className="flex flex-col py-4 mx-auto px-16 lg:flex-row divide-gray-400">
         <p className="mb-0 self-center py-6 space-y-4 text-center sm:flex sm:space-y-0 sm:justify-around sm:space-x-4 lg:flex-1 lg:justify-start">
           <span onClick={() => { navigate("/home", { replace: false }) }} className="cursor-pointer font-semibold text-2xl tracking-tight">Calculate GPA</span>
         </p>
@@ -44,9 +44,9 @@ export default function Homefooter() {
         </div>
       </div>
       <hr className="text-white" />
-      <div className="flex flex-col py-4 mx-auto md:py-8 px-6 lg:flex-row lg:justify-center lg:items-center divide-gray-400">
-        <div class="flex self-center text-sm text-center md:block md:space-x-6">
-          <p className="mb-0 text-base"><span><a className="text-white" href="https://www.linkedin.com/in/que-an-tran-b70a37217/">Harry Tran</a></span> All rights reserved</p>
+      <div className="flex flex-col py-2 mx-auto md:py-4 px-6 lg:flex-row lg:justify-center lg:items-center divide-gray-400">
+        <div className="flex self-center text-sm text-center md:block md:space-x-6">
+          <p className="mb-0 text-base"><span><a className="text-white" target="_blank" href="https://www.linkedin.com/in/que-an-tran-b70a37217/" rel="noreferrer">Harry Tran</a></span> All rights reserved</p>
         </div>
       </div>
     </footer>
