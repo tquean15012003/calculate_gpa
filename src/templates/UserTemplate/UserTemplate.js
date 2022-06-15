@@ -6,7 +6,6 @@ export default function UserTemplate(props) {
     const { Component } = props;
 
     return (
-
         <div style={{
             backgroundImage: `url(${Background})`,
             backgroundPosition: 'center',
