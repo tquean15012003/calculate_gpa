@@ -1,4 +1,4 @@
-import { ADD_COURSE, DROP_COURSE, RESET_CALCULATE, SET_CGPA, SET_CREDITS_EARNED } from "../constants/CourseConsts";
+import { ADD_COURSE, DROP_COURSE, RESET_CALCULATE, SET_CGPA, SET_COURSE_SEARCH, SET_CREDITS_EARNED } from "../constants/CourseConsts";
 
 const stateDefault = {
     courseList: [],
@@ -52,7 +52,8 @@ const stateDefault = {
     priorCGPA: {
         CGPA: "",
         creditsEarned: ""
-    }
+    },
+    courseSearch: []
 };
 
 export const CourseReducer = (state = stateDefault, action) => {
@@ -82,6 +83,10 @@ export const CourseReducer = (state = stateDefault, action) => {
         case DROP_COURSE: {
             const courseListUpdated = state.courseList.filter(course => Number(course.id) !== Number(action.id))
             return { ...state, courseList: courseListUpdated };
+        }
+        case SET_COURSE_SEARCH: {
+            console.log(action.courseSearch)
+            return { ...state, courseSearch: action.courseSearch };
         }
         default: return { ...state };
     };

@@ -1,5 +1,5 @@
 import { courseService } from "../../services/CourseService";
-import { ADD_COURSE, DROP_COURSE, RESET_CALCULATE, SET_CGPA, SET_CREDITS_EARNED } from "../constants/CourseConsts";
+import { ADD_COURSE, DROP_COURSE, RESET_CALCULATE, SET_CGPA, SET_COURSE_SEARCH, SET_CREDITS_EARNED } from "../constants/CourseConsts";
 
 export const addCourseAction = (addCourseInfo, gradeRange) => {
     const { courseCode, grade } = addCourseInfo
@@ -50,3 +50,19 @@ export const dropCourseAction = (id) => ({
     type: DROP_COURSE,
     id
 })
+
+export const setCourseSearchAcion = (courseSearch) => ({
+    type: SET_COURSE_SEARCH,
+    courseSearch
+})
+
+export const setDebounceCourseSearchAction = (courseCode) => {
+    return async (dispatch, getState) => {
+        try{
+            const { data } = await courseService.setSearchCourseService(courseCode.trim().toUpperCase());
+            dispatch(setCourseSearchAcion(data.courseList))
+        } catch (errors) {
+            alert(errors.response.data.message)
+        }
+    }
+}

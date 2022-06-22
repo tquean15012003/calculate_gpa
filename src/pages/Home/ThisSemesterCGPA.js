@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { useFormik } from 'formik';
-import { addCourseAction, dropCourseAction, resetCalculateAction } from '../../redux/actions/CourseAction';
+import { addCourseAction, dropCourseAction, resetCalculateAction, setCourseSearchAcion, setDebounceCourseSearchAction } from '../../redux/actions/CourseAction';
 import { useDispatch, useSelector } from 'react-redux';
 
 export default function ThisSemesterCGPA() {
 
-    const { courseList, gradeRange, priorCGPA } = useSelector(state => state.CourseReducer);
+    const { courseList, gradeRange, priorCGPA, courseSearch } = useSelector(state => state.CourseReducer);
 
     const [showResult, setShowResult] = useState(false)
 
@@ -26,8 +26,9 @@ export default function ThisSemesterCGPA() {
             courseCode: "",
             grade: ""
         },
-        onSubmit: async (values) => {
-            await dispatch(addCourseAction(values, gradeRange))
+        onSubmit: (values) => {
+            dispatch(addCourseAction(values, gradeRange))
+            dispatch(setCourseSearchAcion([]))
             formik.setFieldValue("courseCode", "")
             formik.setFieldValue("grade", "")
         }
@@ -98,7 +99,9 @@ export default function ThisSemesterCGPA() {
                                     </td>
                                     <td className="p-3">
                                         <p onClick={() => {
-                                            dispatch(dropCourseAction(course.id))
+                                            if(window.confirm("Click Oke to delete!") === true){
+                                                dispatch(dropCourseAction(course.id))
+                                            }
                                         }} className="mb-0 cursor-pointer text-xl text-red-600 hover:text-red-400">
                                             <i className="fa fa-times"></i>
                                         </p>
@@ -210,17 +213,29 @@ export default function ThisSemesterCGPA() {
         )
     }
 
-
     return (
         <div className="mt-4">
             <form className="flex flex-col md:flex-row justify-start items-center mr-auto lg:mr-0" onSubmit={formik.handleSubmit}>
                 <div className="font-bold mb-0 md:mr-2 mr-auto">
                     This semester:
                 </div>
-                <div className="mr-auto flex flex-col md:flex-row justify-start items-center">
+                <div className="relative mr-auto flex flex-col md:flex-row justify-start items-center">
                     <div className="flex flex-col sm:flex-row justify-center items-center">
-                        <input onChange={formik.handleChange} value={formik.values.courseCode} className="mr-2 mt-2 md:mt-0 shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" name="courseCode" id="courseCode" type="text" placeholder="Course code" />
+                        <input onChange={async (e) => {
+                            await formik.setFieldValue("courseCode", e.target.value)
+                            dispatch(setDebounceCourseSearchAction(formik.values.courseCode))
+                        }} value={formik.values.courseCode} className="mr-2 mt-2 md:mt-0 shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" name="courseCode" id="courseCode" type="search" placeholder="Course code" />
                         <input onChange={formik.handleChange} value={formik.values.grade} className="mr-2 mt-2 md:mt-0 shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" name="grade" id="grade" type="text" placeholder="Letter grade" />
+                        <div style={{ width: "41.1%" }} className="bg-white shadow appearance-none border rounded text-grey-darker absolute -left-1 sm:left-0 top-12 z-10">
+                            {courseSearch?.map((course, index) => {
+                                return (
+                                    <div onClick={async () => {
+                                        await formik.setFieldValue("courseCode", course.courseCode)
+                                        dispatch(setCourseSearchAcion([]))
+                                    }} className="cursor-pointer py-3 z-10 px-2 hover:bg-black hover:text-white" key={index}>{course.courseCode}</div>
+                                )
+                            })}
+                        </div>
                     </div>
                     <button className="inline-block bg-orange-500 text-white font-bold py-2 px-6 rounded mr-auto md:mr-0 mt-2 md:mt-0" type="submit">
                         Add
@@ -232,11 +247,13 @@ export default function ThisSemesterCGPA() {
                 <div className="mt-4">
                     <button onClick={() => {
                         updateResult()
+                        dispatch(setCourseSearchAcion([]))
                     }} className="inline-block bg-orange-500 text-white font-bold py-2 px-6 rounded mr-2 mt-2 md:mt-0" type="submit">
                         Calculate GPA
                     </button>
-                    <button onClick={async () => {
-                        await dispatch(resetCalculateAction())
+                    <button onClick={() => {
+                        dispatch(resetCalculateAction())
+                        dispatch(setCourseSearchAcion([]))
                         formik.setFieldValue("courseCode", "")
                         formik.setFieldValue("grade", "")
                         setShowResult(false)
