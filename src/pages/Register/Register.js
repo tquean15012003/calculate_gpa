@@ -40,7 +40,7 @@ export default function Register() {
         .required('Required!')
         .min(8, 'Phone number must have exactly 8 numbers!')
         .max(8, 'Phone number must have exactly 8 numbers!')
-        .matches(/(6|8|9)\d{7}/g, "Phone number must be a Singapore phone number"),
+        .matches(/(6|8|9)\d{7}/, "Phone number must be a Singapore phone number"),
     }),
     onSubmit: (values) => {
       dispatch(registerAction(values))

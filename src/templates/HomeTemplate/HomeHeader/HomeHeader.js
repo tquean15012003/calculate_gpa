@@ -11,7 +11,8 @@ export default function HomeHeader() {
   const logOut = () => {
     localStorage.removeItem(TOKEN);
     localStorage.removeItem(USER);
-    navigate("/login", { replace: false })
+    navigate("/", { replace: false })
+    window.location.reload(); 
   }
 
   const renderUserInfo = () => {
@@ -29,7 +30,10 @@ export default function HomeHeader() {
     } else {
       return (
         <>
-          <button onClick={() => { navigate("/login", { replace: false }) }} className="mr-4 inline-block text-xl font-bold text-black hover:text-white duration-300" >
+          <button onClick={() => {
+            navigate("/login", { replace: false })
+            window.location.reload();
+          }} className="mr-4 inline-block text-xl font-bold text-black hover:text-white duration-300" >
             <i className="fa fa-sign-out-alt lg:hidden inline"></i> Log in
           </button>
         </>
@@ -50,7 +54,10 @@ export default function HomeHeader() {
     } else {
       return (
         <>
-          <button onClick={() => { navigate("/login", { replace: false }) }} className="text-lg text-black font-bold block mt-0 text-left duration-300 hover:text-white lg:hidden px-4 py-2 rounded lg:bg-green-400 mr-2 group hover:bg-yellow-400">
+          <button onClick={() => {
+            window.location.reload();
+            navigate("/login", { replace: false })
+          }} className="text-lg text-black font-bold block mt-0 text-left duration-300 hover:text-white lg:hidden px-4 py-2 rounded lg:bg-green-400 mr-2 group hover:bg-yellow-400">
             <i className="fa fa-sign-out-alt lg:hidden inline"></i> Log in
           </button>
         </>
